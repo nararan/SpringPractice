@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lee.domain.BoardVO;
 import com.lee.domain.Criteria;
+import com.lee.domain.PageMaker;
 import com.lee.service.BoardService;
 
 @Controller
@@ -61,6 +62,7 @@ public class BoardController {
 		return "redirect:/board/listAll";
 	}
 	
+	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyGET(int bno, Model model) throws Exception {
 		model.addAttribute(service.read(bno));
@@ -82,5 +84,17 @@ public class BoardController {
 		logger.info("show list Page with Criteria............");
 		
 		model.addAttribute("list", service.listCriteria(cri));
+	}
+	
+	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	public void listPage(Criteria cri, Model model) throws Exception {
+		logger.info(cri.toString());
+		
+		model.addAttribute("list", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(131);
+		
+		model.addAttribute("pageMaker", pageMaker);
 	}
 }

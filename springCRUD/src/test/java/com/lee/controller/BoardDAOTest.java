@@ -35,24 +35,33 @@ public class BoardDAOTest {
 //	}
 	
 //	@Test
-//	public void testPaging() throws Exception {
-//		int page = 3;
-//		
-//		List<BoardVO> list = dao.listPage(page);
+//	public void testListAll() throws Exception {
+//		List<BoardVO> list = dao.listAll();
 //		
 //		for(BoardVO boardVO : list) {
 //			logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
 //		}
 //	}
+	
 	@Test
-	public void testListCriteria() throws Exception {
-		Criteria cri = new Criteria();
-		cri.setPage(2);
-		cri.setPerPageNum(20);
+	public void testPaging() throws Exception {
+		int page = 1;
 		
-		List<BoardVO> list = dao.listCriteria(cri);
+		List<BoardVO> list = dao.listPage(page);
 		
-		for(BoardVO boardVO : list)
+		for(BoardVO boardVO : list) {
 			logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
+		}
 	}
+//	@Test
+//	public void testListCriteria() throws Exception {
+//		Criteria cri = new Criteria();
+//		cri.setPage(2);
+//		cri.setPerPageNum(20);
+//		
+//		List<BoardVO> list = dao.listCriteria(cri);
+//		
+//		for(BoardVO boardVO : list)
+//			logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
+//	}
 }
