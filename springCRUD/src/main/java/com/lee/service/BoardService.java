@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lee.domain.BoardVO;
 import com.lee.domain.Criteria;
+import com.lee.domain.SearchCriteria;
 
 public interface BoardService {
 	public void regist(BoardVO board) throws Exception;
@@ -19,4 +20,8 @@ public interface BoardService {
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	
 	public int countPaging(Criteria cri) throws Exception;
+	
+	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception;
+	
+	public int listSearchCount(SearchCriteria cri) throws Exception;
 }
