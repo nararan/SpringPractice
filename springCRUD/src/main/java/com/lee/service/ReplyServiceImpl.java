@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.lee.domain.Criteria;
 import com.lee.domain.ReplyVO;
 import com.lee.persistence.ReplyDAO;
 
@@ -37,6 +38,18 @@ public class ReplyServiceImpl implements ReplyService {
 	public void removeReply(Integer rno) throws Exception {
 		// TODO Auto-generated method stub
 		dao.delete(rno);
+	}
+
+	@Override
+	public List<ReplyVO> listReplyPage(Integer bno, Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listPage(bno, cri);
+	}
+
+	@Override
+	public int count(Integer bno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.count(bno);
 	}
 
 }
