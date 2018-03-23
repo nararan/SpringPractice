@@ -17,13 +17,16 @@ public class EchoHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
 		logger.info("{} connected", session.getId());
+		for(WebSocketSession sess : sessionList) {
+			sess.sendMessage(new TextMessage(session.getId() + " is connected!!\r\n"));
+		}
 	}
 	
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		logger.info("from {}, received Message : {}", session.getId(), message.getPayload());
 		
 		for(WebSocketSession sess : sessionList) {
-			sess.sendMessage(new TextMessage(session.getId() + " : " + message.getPayload()));
+			sess.sendMessage(new TextMessage(session.getId() + " : " + message.getPayload() + "\r\n"));
 		}
 	}
 	

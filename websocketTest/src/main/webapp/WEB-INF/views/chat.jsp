@@ -20,6 +20,8 @@
 	
 	<script>
 	var sock = new SockJS("<c:url value="/echo"/>");
+	sock.onopen = onOpen;
+	
 	sock.onmessage = onMessage;
 
 	sock.onclose = onClose;
@@ -33,16 +35,19 @@
 	
 	function sendMessage() {
 		sock.send($("#message").val());
-		$("#message").val('');
-		document.getElementById("message").autofocus;
-		document.getElementById("data").scrollTop = document.getElementById("data").scrollHeight; 
+	}
+	
+	function onOpen(evt) {
 	}
 	
 	function onMessage(evt) {
 		var data = evt.data;
 		
 		console.log('chatting data: ' + data);
-		$("#data").append(data+'\r\n');
+		$("#data").append(data);
+		$("#message").val('');
+		document.getElementById("message").autofocus;
+		document.getElementById("data").scrollTop = document.getElementById("data").scrollHeight; 
 	}
 	
 	function onClose(evt) {
